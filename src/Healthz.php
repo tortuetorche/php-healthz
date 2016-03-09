@@ -1,8 +1,9 @@
 <?php
 namespace GenTux\Healthz;
 
-use GenTux\Healthz\Exceptions\HealthWarningException;
+use Exception;
 use GenTux\Healthz\Support\Stack;
+use GenTux\Healthz\Exceptions\HealthWarningException;
 
 /**
  * Collection of health checks to run.
