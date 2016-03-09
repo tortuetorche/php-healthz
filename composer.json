@@ -1,0 +1,28 @@
+{
+    "name": "generationtux/healthz",
+    "description": "Health check page for Laravel and Lumen apps.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kyle Ferguson",
+            "email": "kyle.ferguson@generationtux.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "GenTux\\Healthz\\": "src/"
+        },
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/contracts": "5.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "mockery/mockery": "^0.9.4"
+    }
+}
