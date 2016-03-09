@@ -1,6 +1,6 @@
 {
     "name": "generationtux/healthz",
-    "description": "Health check page for Laravel and Lumen apps.",
+    "description": "Health checks for PHP apps.",
     "license": "MIT",
     "authors": [
         {
