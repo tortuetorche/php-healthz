@@ -18,6 +18,9 @@ class EnvHealthCheck extends HealthCheck
     /** @var string */
     protected $title = 'Environment';
 
+    /** @var string */
+    protected $description = 'Check the environment Laravel is running in.';
+
     /** @var Application */
     protected $app;
 
@@ -35,6 +38,6 @@ class EnvHealthCheck extends HealthCheck
     public function run()
     {
         $env = $this->app->environment();
-        $this->setDescription($env);
+        $this->setStatus($env);
     }
 }

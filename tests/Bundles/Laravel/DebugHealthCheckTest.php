@@ -24,7 +24,7 @@ class DebugHealthCheckTest extends \TestCase
         putenv('APP_DEBUG=false');
 
         $this->debug->run();
-        $this->assertSame('off', $this->debug->description());
+        $this->assertSame('off', $this->debug->status());
     }
 
     /**

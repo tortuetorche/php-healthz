@@ -15,6 +15,9 @@ use GenTux\Healthz\HealthCheck;
 class HttpHealthCheck extends HealthCheck
 {
 
+    /** @var string */
+    protected $title = 'HTTP';
+
     /** @var Request */
     protected $request;
 
@@ -146,5 +149,21 @@ class HttpHealthCheck extends HealthCheck
     public function guzzle()
     {
         return $this->guzzle;
+    }
+
+    /**
+     * If no description is set, we will use the request URL
+     *
+     * @return string
+     */
+    public function description()
+    {
+        $description = $this->description;
+
+        if (!$description) {
+            $description = (string) $this->request()->getUri();
+        }
+
+        return $description;
     }
 }

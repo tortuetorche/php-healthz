@@ -28,11 +28,11 @@ class EnvHealthCheckTest extends \TestCase
     }
 
     /** @test */
-    public function run_sets_the_current_environment_as_the_description()
+    public function sets_the_status_to_the_current_environment()
     {
         $this->app->shouldReceive('environment')->andReturn('staging');
 
         $this->env->run();
-        $this->assertSame('staging', $this->env->description());
+        $this->assertSame('staging', $this->env->status());
     }
 }

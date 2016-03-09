@@ -106,4 +106,13 @@ class HttpHealthCheckTest extends \TestCase
         $this->http->setExpectedStatusCode(404);
         $this->http->run(); // no exceptions, should pass
     }
+
+    /** @test */
+    public function if_no_description_is_set_the_request_uri_is_used()
+    {
+        $this->request->shouldReceive('getUri')->andReturn('/somewhere');
+        $description = $this->http->description();
+
+        $this->assertSame('/somewhere', $description);
+    }
 }

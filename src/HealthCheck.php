@@ -9,11 +9,14 @@ namespace GenTux\Healthz;
 abstract class HealthCheck
 {
 
-    /** @var string|null */
+    /** @var string|null Title for the health check */
     protected $title;
 
-    /** @var string|null */
+    /** @var string|null Brief description of the health check */
     protected $description;
+
+    /** @var string|null Status message for the health check */
+    protected $status;
 
     /**
      * Run the health check.
@@ -84,5 +87,32 @@ abstract class HealthCheck
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Get the status of the health check
+     *
+     * NOTE: If an exception is thrown, the status message for a health
+     * check will be replaced with the exceptions message.
+     *
+     * @return null|string
+     */
+    public function status()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the status of the health check
+     *
+     * @param string $status
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $status;
     }
 }

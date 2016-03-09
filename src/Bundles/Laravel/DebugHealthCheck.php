@@ -17,6 +17,9 @@ class DebugHealthCheck extends HealthCheck
     /** @var string */
     protected $title = 'Debug';
 
+    /** @var string */
+    protected $description = 'Check if Laravel is running in debug mode.';
+
     /**
      * Check if the app is in debug mode
      *
@@ -32,6 +35,6 @@ class DebugHealthCheck extends HealthCheck
             throw new HealthWarningException('on');
         }
 
-        $this->setDescription('off');
+        $this->setStatus('off');
     }
 }
