@@ -1,6 +1,9 @@
 <?php
 namespace GenTux\Healthz;
 
+use GenTux\Healthz\Exceptions\HealthWarningException;
+use GenTux\Healthz\Support\Stack;
+
 /**
  * Collection of health checks to run.
  *
@@ -9,31 +12,43 @@ namespace GenTux\Healthz;
 class Healthz
 {
 
-    /** @var HealthCheck[] */
-    protected $healthChecks = [];
+    use Stack {
+        Stack::push as stackPush;
+    }
 
     /**
      * @param HealthCheck[] $healthChecks
      */
     public function __construct($healthChecks = [])
     {
-        $this->healthChecks = $healthChecks;
-    }
-
-    /**
-     * Get all health checks in the stack
-     *
-     * @return HealthCheck[]
-     */
-    public function all()
-    {
-        return $this->healthChecks;
+        $this->items = $healthChecks;
     }
 
     public function push(HealthCheck $healthCheck)
     {
-        $this->healthChecks[] = $healthCheck;
+        return $this->stackPush($healthCheck);
+    }
 
-        return $this;
+    /**
+     * Run the health checks in the stack
+     */
+    public function run()
+    {
+        $results = [];
+
+        foreach($this->all() as $check) {
+            $resultCode = HealthResult::RESULT_SUCCESS;
+
+            try {
+                $check->run();
+            } catch (Exception $e) {
+                $check->setStatus($e->getMessage());
+                $resultCode = $e instanceof HealthWarningException ? HealthResult::RESULT_WARNING : HealthResult::RESULT_FAILURE;
+            }
+
+            $results[] = new HealthResult($resultCode, $check);
+        }
+
+        return new ResultStack($results);
     }
 }
