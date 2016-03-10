@@ -15,6 +15,9 @@ class ResultStackTest extends \TestCase
     /** @var HealthResult */
     protected $checkFailed;
 
+    /** @var HealthResult */
+    protected $checkWarned;
+
     public function setUp()
     {
         $this->checkPassed = Mockery::mock(HealthResult::class);
@@ -22,6 +25,10 @@ class ResultStackTest extends \TestCase
 
         $this->checkFailed = Mockery::mock(HealthResult::class);
         $this->checkFailed->shouldReceive('failed')->andReturn(true);
+
+        $this->checkWarned = Mockery::mock(HealthResult::class);
+        $this->checkWarned->shouldReceive('warned')->andReturn(true);
+        $this->checkWarned->shouldReceive('failed')->andReturn(false);
 
         $this->stack = new ResultStack();
         parent::setUp();
@@ -37,5 +44,13 @@ class ResultStackTest extends \TestCase
         $this->stack->merge([$this->checkFailed]);
         $this->assertSame([$this->checkPassed, $this->checkFailed], $this->stack->all());
         $this->assertTrue($this->stack->hasFailures());
+    }
+
+    /** @test */
+    public function push_and_check_for_warnings()
+    {
+        $this->stack->replace([$this->checkWarned]);
+        $this->assertFalse($this->stack->hasFailures());
+        $this->assertTrue($this->stack->hasWarnings());
     }
 }

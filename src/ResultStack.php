@@ -36,9 +36,28 @@ class ResultStack
         foreach ($this->all() as $result) {
             if ($result->failed()) {
                 $hasFailure = true;
+                break;
             }
         }
 
         return $hasFailure;
+    }
+
+    /**
+     * Determine if any results in the stack have warnings
+     *
+     * @return bool
+     */
+    public function hasWarnings()
+    {
+        $hasWarning = false;
+        foreach($this->all() as $result) {
+            if ($result->warned()) {
+                $hasWarning = true;
+                break;
+            }
+        }
+
+        return $hasWarning;
     }
 }
