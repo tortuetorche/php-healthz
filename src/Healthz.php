@@ -25,6 +25,13 @@ class Healthz
         $this->items = $healthChecks;
     }
 
+    /**
+     * Push new health check onto the stack
+     *
+     * @param HealthCheck $healthCheck
+     *
+     * @return $this
+     */
     public function push(HealthCheck $healthCheck)
     {
         return $this->stackPush($healthCheck);
@@ -32,6 +39,8 @@ class Healthz
 
     /**
      * Run the health checks in the stack
+     *
+     * @return ResultStack
      */
     public function run()
     {

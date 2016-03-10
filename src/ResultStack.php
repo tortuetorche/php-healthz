@@ -15,7 +15,7 @@ class ResultStack
         Stack::push as stackPush;
     }
 
-    public function __construct(array $results)
+    public function __construct(array $results=[])
     {
         $this->items = $results;
     }
@@ -30,7 +30,7 @@ class ResultStack
      *
      * @return bool
      */
-    public function hasFailure()
+    public function hasFailures()
     {
         $hasFailure = false;
         foreach ($this->all() as $result) {
