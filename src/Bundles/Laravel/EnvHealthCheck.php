@@ -3,6 +3,7 @@ namespace GenTux\Healthz\Bundles\Laravel;
 
 use GenTux\Healthz\HealthCheck;
 use Illuminate\Contracts\Foundation\Application;
+use GenTux\Healthz\Exceptions\HealthFailureException;
 
 /**
  * Check the current environment Laravel is running in
@@ -24,9 +25,15 @@ class EnvHealthCheck extends HealthCheck
     /** @var Application */
     protected $app;
 
-    public function __construct(Application $app)
+    public function __construct($app = null)
     {
         $this->app = $app;
+
+        if (!$app) {
+            try { $this->app = app(); } catch (\Exception $e) {
+                throw new HealthFailureException('Unable to resolve instance of application for Laravel.');
+            }
+        }
     }
 
     /**
