@@ -161,7 +161,7 @@ class HttpHealthCheck extends HealthCheck
         $description = $this->description;
 
         if (!$description) {
-            $description = (string) $this->request()->getUri();
+            $description = (string) $this->request()->getUrl();
         }
 
         return $description;
