@@ -1,11 +1,11 @@
 <?php
 namespace GenTux\Healthz\Bundles\General;
 
-use GenTux\Healthz\Exceptions\HealthFailureException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Message\Request;
 use GenTux\Healthz\HealthCheck;
+use GuzzleHttp\Exception\RequestException;
+use GenTux\Healthz\Exceptions\HealthFailureException;
 
 /**
  * Health check for HTTP endpoints

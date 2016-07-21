@@ -3,9 +3,9 @@ namespace GenTux\Healthz\Bundles\General;
 
 use Mockery;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use GenTux\Healthz\HealthCheck;
+use GuzzleHttp\Message\Request;
+use GuzzleHttp\Message\Response;
 use GuzzleHttp\Exception\RequestException;
 
 class HttpHealthCheckTest extends \TestCase
