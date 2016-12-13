@@ -17,7 +17,7 @@ composer require generationtux/php-healthz
 Contributing
 -------
 
-Contributions are welcome and will be fully credited. Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Contributions are welcome and will be fully credited. 
 
 Security
 -------
