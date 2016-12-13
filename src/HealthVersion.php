@@ -31,6 +31,6 @@ class HealthVersion
             return false;
         }
 
-        return (file_get_contents($this->customPath) == $this->version) ? true : false;
+        return (file_get_contents($this->customPath) == $this->version);
     }
 }
