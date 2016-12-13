@@ -17,7 +17,7 @@ class HealthVersionTest extends \TestCase
     {
         parent::setUp();
 
-        $this->correctPathHealthVersion = new HealthVersion("tests/committest.txt");
+        $this->correctPathHealthVersion = new HealthVersion('tests/commit.txt');
         $this->badPathHealthVersion = new HealthVersion("badpath.txt");
     }
 
