@@ -5,15 +5,13 @@ namespace GenTux\Healthz;
 class HealthVersion
 {
 
-    protected $version;
-
     protected $customPath;
 
     /**
      * HealthVersion constructor.
      * @param string $customPath
      */
-    public function __construct($customPath = __DIR__.'commit.txt')
+    public function __construct($customPath = __DIR__.'/commit.txt')
     {
         $this->customPath = $customPath;
     }
@@ -25,12 +23,10 @@ class HealthVersion
      */
     public function checkVersion($inputHash)
     {
-        $this->version = $inputHash;
-
-        if(!is_file($this->customPath)){
+        if (file_exists($this->customPath)) {
+            return (file_get_contents($this->customPath) == $inputHash);
+        } else {
             return false;
         }
-
-        return (file_get_contents($this->customPath) == $this->version);
     }
 }
