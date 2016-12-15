@@ -24,7 +24,7 @@ class HealthVersion
     public function checkVersion($inputHash)
     {
         if (file_exists($this->customPath)) {
-            return (file_get_contents($this->customPath) == $inputHash);
+            return (trim(file_get_contents($this->customPath)) == $inputHash);
         } else {
             return false;
         }

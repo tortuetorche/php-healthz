@@ -13,12 +13,16 @@ class HealthVersionTest extends \TestCase
 
     protected $badPathHealthVersion;
 
+    protected $trailingNewlinePathHealthVersion;
+
     public function setUp()
     {
         parent::setUp();
 
+
         $this->correctPathHealthVersion = new HealthVersion('tests/commit.txt');
         $this->badPathHealthVersion = new HealthVersion("badpath.txt");
+        $this->trailingNewlinePathHealthVersion = new HealthVersion('tests/trailing-newline-commit.txt');
     }
 
     /** @test */
@@ -37,5 +41,12 @@ class HealthVersionTest extends \TestCase
     public function it_returns_false_when_text_file_not_found()
     {
         $this->assertFalse($this->badPathHealthVersion->checkVersion("2d39ff989b3f18bd332cfc7a5c2a0abea1308e27"));
+    }
+
+    /** @test */
+    public function it_trims_whitespace_from_commit_txt_file_contents()
+    {
+        $this->assertTrue($this->trailingNewlinePathHealthVersion->checkVersion("2d39ff989b3f18bd332cfc7a5c2a0abea1308e27"));
+        $this->assertFalse($this->trailingNewlinePathHealthVersion->checkVersion("hurdygurdy"));
     }
 }
