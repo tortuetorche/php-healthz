@@ -45,7 +45,7 @@ class HealthResultTest extends \TestCase
     }
 
     /** @test */
-    public function informatin_about_health_check()
+    public function information_about_health_check()
     {
         $this->assertSame('Title', $this->resultSuccess->title());
         $this->assertSame('Description', $this->resultSuccess->description());
