@@ -159,17 +159,6 @@ class MyCustomCheck extends HealthCheck {
     /** @var string Optionally set a description, just to provide more info on the UI */
     protected $description = '';
 
-    /**
-     * Run the health check.
-     *
-     * If no exception is thrown we will consider the health check successful.
-     * If you want the health check to fail with a warning, throw an
-     * instance of GenTux\Healthz\Exceptions\HealthWarningException
-     *
-     * @return mixed
-     *
-     * @throws \GenTux\Healthz\Exceptions\HealthWarningException | mixed
-     */
     public function run()
     {
         // any exception that is thrown will consider the check unhealthy
