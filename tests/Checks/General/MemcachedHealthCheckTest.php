@@ -9,6 +9,7 @@ namespace {
 
 namespace Gentux\Healthz\Bundles\General {
 
+    use Gentux\Healthz\Checks\General\MemcachedHealthCheck;
     use Mockery;
     use Gentux\Healthz\HealthCheck;
     use GeckoPackages\MemcacheMock\MemcachedMock;

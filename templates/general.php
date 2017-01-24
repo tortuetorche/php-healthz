@@ -3,7 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Gentux\Healthz\Healthz;
 use GuzzleHttp\Psr7\Request;
-use Gentux\Healthz\Bundles\General\HttpHealthCheck;
+use Gentux\Healthz\Checks\General\HttpHealthCheck;
 
 $request = new Request('GET', 'http://google.com');
 $healthCheck = (new HttpHealthCheck($request))->setTitle('Google');

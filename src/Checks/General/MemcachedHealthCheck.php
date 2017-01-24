@@ -1,5 +1,5 @@
 <?php
-namespace Gentux\Healthz\Bundles\General;
+namespace Gentux\Healthz\Checks\General;
 
 use Memcached;
 use Gentux\Healthz\HealthCheck;

@@ -1,6 +1,7 @@
 <?php
 namespace Gentux\Healthz\Bundles\Laravel;
 
+use Gentux\Healthz\Checks\Laravel\QueueHealthCheck;
 use Mockery;
 use Aws\Sqs\SqsClient;
 use Illuminate\Queue\SqsQueue;

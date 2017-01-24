@@ -1,6 +1,7 @@
 <?php
 namespace Gentux\Healthz\Bundles\General;
 
+use Gentux\Healthz\Checks\General\HttpHealthCheck;
 use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;

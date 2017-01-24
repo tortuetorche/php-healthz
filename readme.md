@@ -49,8 +49,8 @@ Even if the UI has basic auth, the simplified `/healthz` endpoint will always be
 ```php
 use Gentux\Healthz\Healthz;
 use Illuminate\Support\ServiceProvider;
-use Gentux\Healthz\Bundles\Laravel\EnvHealthCheck;
-use Gentux\Healthz\Bundles\Laravel\DatabaseHealthCheck;
+use Gentux\Healthz\Checks\General\EnvHealthCheck;
+use Gentux\Healthz\Checks\Laravel\DatabaseHealthCheck;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -77,7 +77,7 @@ class AppServiceProvider extends ServiceProvider {
 ```php
 <?php
 use Gentux\Healthz\Healthz;
-use Gentux\Healthz\Bundles\General\MemcachedHealthCheck;
+use Gentux\Healthz\Checks\General\MemcachedHealthCheck;
 
 $memcached = (new MemcachedHealthCheck())->addServer('127.0.0.1');
 $healthz = new Healthz([$memcached]);

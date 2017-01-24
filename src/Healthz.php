@@ -2,6 +2,8 @@
 namespace Gentux\Healthz;
 
 use Exception;
+use Twig_Environment;
+use Twig_Loader_Array;
 use Gentux\Healthz\Support\Stack;
 use Gentux\Healthz\Exceptions\HealthWarningException;
 
@@ -60,5 +62,28 @@ class Healthz
         }
 
         return new ResultStack($results);
+    }
+
+    /**
+     * Generate the HTML view for the health checks
+     *
+     * NOTE: this will run the health checks if a result stack is not passed in
+     *
+     * @param ResultStack $results
+     *
+     * @return string
+     */
+    public function html(ResultStack $results=null)
+    {
+        if ($results === null) {
+            $results = $this->run();
+        }
+
+        $loader = new Twig_Loader_Array([
+            'healthz' => file_get_contents(__DIR__ . '/../templates/healthz.html'),
+        ]);
+        $twig = new Twig_Environment($loader);
+
+        return $twig->render('index', ['results' => $results]);
     }
 }

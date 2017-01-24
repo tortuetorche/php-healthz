@@ -1,6 +1,7 @@
 <?php
 namespace Gentux\Healthz\Bundles\Laravel;
 
+use Gentux\Healthz\Checks\General\EnvHealthCheck;
 use Mockery;
 use Gentux\Healthz\HealthCheck;
 use Illuminate\Contracts\Foundation\Application;

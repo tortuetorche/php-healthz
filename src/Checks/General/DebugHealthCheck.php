@@ -1,5 +1,5 @@
 <?php
-namespace Gentux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Checks\General;
 
 use Gentux\Healthz\HealthCheck;
 use Gentux\Healthz\Exceptions\HealthWarningException;

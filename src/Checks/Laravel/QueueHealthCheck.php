@@ -1,13 +1,13 @@
 <?php
-namespace Gentux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Checks\Laravel;
 
 use Exception;
-use Gentux\Healthz\Exceptions\HealthWarningException;
-use Gentux\Healthz\HealthCheck;
-use Illuminate\Queue\QueueManager;
-use Gentux\Healthz\Exceptions\HealthFailureException;
 use Illuminate\Queue\SqsQueue;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Queue\SyncQueue;
+use Illuminate\Queue\QueueManager;
+use Gentux\Healthz\Exceptions\HealthWarningException;
+use Gentux\Healthz\Exceptions\HealthFailureException;
 
 /**
  * This will check the connection to a queue provider.

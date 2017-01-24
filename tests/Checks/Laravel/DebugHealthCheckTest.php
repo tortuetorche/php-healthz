@@ -1,6 +1,7 @@
 <?php
 namespace Gentux\Healthz\Bundles\Laravel;
 
+use Gentux\Healthz\Checks\General\DebugHealthCheck;
 use Gentux\Healthz\HealthCheck;
 
 class DebugHealthCheckTest extends \TestCase
