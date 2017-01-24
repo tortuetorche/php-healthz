@@ -115,6 +115,9 @@ $html = $healthz->html();
 
 ## Check configuration
 
+*Note: Checks may have one of 3 statuses (`success`, `warning`, or `failure`). Any combination of success and warning and the stack as a whole will be considered to be successful.
+Any single failure, however, will consider the stack to be failed.*
+
 - [HTTP](#http-check)
 - [Memcached](#memcached-check)
 - [Debug](#debug-check)
