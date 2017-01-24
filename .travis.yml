@@ -7,3 +7,6 @@ install: composer install
 script: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 after_success:
   - vendor/bin/test-reporter
+addons:
+  code_climate:
+      repo_token: $CODE_CLIMATE_TOKEN
