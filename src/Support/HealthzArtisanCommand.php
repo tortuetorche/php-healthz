@@ -19,6 +19,7 @@ class HealthzArtisanCommand extends Command
 
     public function __construct(Healthz $checks)
     {
+        parent::__construct();
         $this->checks = $checks;
     }
 
