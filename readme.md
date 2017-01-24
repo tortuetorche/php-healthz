@@ -31,7 +31,7 @@ $ composer require generationtux/healthz
 ### Laravel
 (the following should work with Lumen as well, with minor differences)
 
-1. Add the service provider that will register the default health checks and routes
+**Add the service provider that will register the default health checks and routes**
 ```php
 // config/app.php
 'providers' => [
@@ -45,7 +45,7 @@ You should be able to visit `/healthz/ui` to see the default Laravel health chec
 To add basic auth to the UI page, set the `HEALTHZ_USERNAME` and `HEALTHZ_PASSWORD` environment variables.
 Even if the UI has basic auth, the simplified `/healthz` endpoint will always be available to respond with a simple `ok` or `fail` for load balancers and other automated checks to hit.
 
-2. In order to customize the health checks, simply register `GenTux\Healthz\Healthz` in your app service provider (probably `app/Providers/AppServiceProvider.php`) to build a custom Healthz instance.
+**In order to customize the health checks, simply register `GenTux\Healthz\Healthz` in your app service provider (probably `app/Providers/AppServiceProvider.php`) to build a custom Healthz instance.**
 ```php
 use GenTux\Healthz\Healthz;
 use Illuminate\Support\ServiceProvider;
@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider {
 
 ### General PHP
 
-1. Build an instance of the health check
+**Build an instance of the health check**
 ```php
 <?php
 use GenTux\Healthz\Healthz;
@@ -83,7 +83,7 @@ $memcached = (new MemcachedHealthCheck())->addServer('127.0.0.1');
 $healthz = new Healthz([$memcached]);
 ```
 
-2. Run the checks and review results
+**Run the checks and review results**
 ```php
 // @var $results GenTux\Healthz\ResultStack
 $results = $healthz->run();
@@ -106,7 +106,7 @@ foreach ($results->all() as $result) {
 }
 ```
 
-3. Get the UI view
+**Get the UI view**
 ```php
 $html = $healthz->html();
 ```
@@ -114,9 +114,6 @@ $html = $healthz->html();
 ----------------------------------------------------------------------------
 
 ## Check configuration
-
-*Note: Checks may have one of 3 statuses (`success`, `warning`, or `failure`). Any combination of success and warning and the stack as a whole will be considered to be successful.
-Any single failure, however, will consider the stack to be failed.*
 
 - [HTTP](#http-check)
 - [Memcached](#memcached-check)
@@ -146,6 +143,9 @@ Any single failure, however, will consider the stack to be failed.*
 ----------------------------------------------------------------------------
 
 ## Custom checks
+
+*Note: Checks may have one of 3 statuses (`success`, `warning`, or `failure`). Any combination of success and warning and the stack as a whole will be considered to be successful.
+Any single failure, however, will consider the stack to be failed.*
 
 To create a custom health check, you should extend `GenTux\Healthz\HealthCheck` and implement the one abstract method `run()`.
 
