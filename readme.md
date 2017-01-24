@@ -36,7 +36,7 @@ $ composer require generationtux/healthz
 // config/app.php
 'providers' => [
     Illuminate...,
-    GenTux\Healthz\Support\HealthzServiceProvider::class,
+    Gentux\Healthz\Support\HealthzServiceProvider::class,
 ]
 ```
 
@@ -45,12 +45,12 @@ You should be able to visit `/healthz/ui` to see the default Laravel health chec
 To add basic auth to the UI page, set the `HEALTHZ_USERNAME` and `HEALTHZ_PASSWORD` environment variables.
 Even if the UI has basic auth, the simplified `/healthz` endpoint will always be available to respond with a simple `ok` or `fail` for load balancers and other automated checks to hit.
 
-**In order to customize the health checks, simply register `GenTux\Healthz\Healthz` in your app service provider (probably `app/Providers/AppServiceProvider.php`) to build a custom Healthz instance.**
+**In order to customize the health checks, simply register `Gentux\Healthz\Healthz` in your app service provider (probably `app/Providers/AppServiceProvider.php`) to build a custom Healthz instance.**
 ```php
-use GenTux\Healthz\Healthz;
+use Gentux\Healthz\Healthz;
 use Illuminate\Support\ServiceProvider;
-use GenTux\Healthz\Bundles\Laravel\EnvHealthCheck;
-use GenTux\Healthz\Bundles\Laravel\DatabaseHealthCheck;
+use Gentux\Healthz\Bundles\Laravel\EnvHealthCheck;
+use Gentux\Healthz\Bundles\Laravel\DatabaseHealthCheck;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -76,8 +76,8 @@ class AppServiceProvider extends ServiceProvider {
 **Build an instance of the health check**
 ```php
 <?php
-use GenTux\Healthz\Healthz;
-use GenTux\Healthz\Bundles\General\MemcachedHealthCheck;
+use Gentux\Healthz\Healthz;
+use Gentux\Healthz\Bundles\General\MemcachedHealthCheck;
 
 $memcached = (new MemcachedHealthCheck())->addServer('127.0.0.1');
 $healthz = new Healthz([$memcached]);
@@ -85,7 +85,7 @@ $healthz = new Healthz([$memcached]);
 
 **Run the checks and review results**
 ```php
-// @var $results GenTux\Healthz\ResultStack
+// @var $results Gentux\Healthz\ResultStack
 $results = $healthz->run();
 
 if ($results->hasFailures()) {
@@ -97,7 +97,7 @@ if ($results->hasWarnings()) {
 }
 
 foreach ($results->all() as $result) {
-    // @var $result GenTux\Healthz\HealthResult
+    // @var $result Gentux\Healthz\HealthResult
     if ($result->passed() || $result->warned() || $result->failed()) {
         echo "it did one of those things at least";
     }
@@ -147,12 +147,12 @@ $html = $healthz->html();
 *Note: Checks may have one of 3 statuses (`success`, `warning`, or `failure`). Any combination of success and warning and the stack as a whole will be considered to be successful.
 Any single failure, however, will consider the stack to be failed.*
 
-To create a custom health check, you should extend `GenTux\Healthz\HealthCheck` and implement the one abstract method `run()`.
+To create a custom health check, you should extend `Gentux\Healthz\HealthCheck` and implement the one abstract method `run()`.
 
 ```php
 <?php
 
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 
 class MyCustomCheck extends HealthCheck {
 
@@ -177,9 +177,9 @@ public function run()
 }
 ```
 
-If you would like the check to show a `warning` instead of a full failure, throw an instance of `GenTux\Healthz\Exceptions\HealthWarningException`.
+If you would like the check to show a `warning` instead of a full failure, throw an instance of `Gentux\Healthz\Exceptions\HealthWarningException`.
 ```php
-use GenTux\Healthz\Exceptions\HealthWarningException;
+use Gentux\Healthz\Exceptions\HealthWarningException;
 
 public function run()
 {

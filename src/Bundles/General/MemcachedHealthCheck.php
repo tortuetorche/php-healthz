@@ -1,14 +1,14 @@
 <?php
-namespace GenTux\Healthz\Bundles\General;
+namespace Gentux\Healthz\Bundles\General;
 
 use Memcached;
-use GenTux\Healthz\HealthCheck;
-use GenTux\Healthz\Exceptions\HealthFailureException;
+use Gentux\Healthz\HealthCheck;
+use Gentux\Healthz\Exceptions\HealthFailureException;
 
 /**
  * Health check for memcached connection
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class MemcachedHealthCheck extends HealthCheck
 {

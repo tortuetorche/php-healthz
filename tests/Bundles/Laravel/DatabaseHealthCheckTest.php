@@ -1,8 +1,8 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
 use Mockery;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Database\Connection;
 use Illuminate\Database\DatabaseManager;
 
@@ -63,7 +63,7 @@ class DatabaseHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException \GenTux\Healthz\Exceptions\HealthFailureException
+     * @expectedException \Gentux\Healthz\Exceptions\HealthFailureException
      */
     public function throws_health_failure_when_laravel_runs_into_trouble()
     {

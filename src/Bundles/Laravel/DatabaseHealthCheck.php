@@ -1,15 +1,15 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
 use Exception;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Database\DatabaseManager;
-use GenTux\Healthz\Exceptions\HealthFailureException;
+use Gentux\Healthz\Exceptions\HealthFailureException;
 
 /**
  * This will check the connection to a database using Laravel db services.
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class DatabaseHealthCheck extends HealthCheck
 {

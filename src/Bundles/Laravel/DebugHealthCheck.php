@@ -1,15 +1,15 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
-use GenTux\Healthz\HealthCheck;
-use GenTux\Healthz\Exceptions\HealthWarningException;
+use Gentux\Healthz\HealthCheck;
+use Gentux\Healthz\Exceptions\HealthWarningException;
 
 /**
  * This will check if Laravel is running in debug mode.
  *
  * If it is, we will set the health check to fail with a warning
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class DebugHealthCheck extends HealthCheck
 {

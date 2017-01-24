@@ -1,10 +1,10 @@
 <?php
-namespace GenTux\Healthz\Support;
+namespace Gentux\Healthz\Support;
 
 /**
  * Helper for managing collections of stuffs
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 trait Stack
 {

@@ -1,10 +1,10 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 /**
  * Base class for new health checks
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 abstract class HealthCheck
 {
@@ -23,11 +23,11 @@ abstract class HealthCheck
      *
      * If no exception is thrown we will consider the health check successful.
      * If you want the health check to fail with a warning, throw an
-     * instance of GenTux\Healthz\Exceptions\HealthWarningException
+     * instance of Gentux\Healthz\Exceptions\HealthWarningException
      *
      * @return mixed
      *
-     * @throws \GenTux\Healthz\Exceptions\HealthWarningException | mixed
+     * @throws \Gentux\Healthz\Exceptions\HealthWarningException | mixed
      */
     abstract public function run();
 

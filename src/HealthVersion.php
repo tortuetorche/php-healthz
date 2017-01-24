@@ -1,6 +1,6 @@
 <?php
 
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 class HealthVersion
 {

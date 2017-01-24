@@ -1,18 +1,18 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
 use Exception;
-use GenTux\Healthz\Exceptions\HealthWarningException;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\Exceptions\HealthWarningException;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Queue\QueueManager;
-use GenTux\Healthz\Exceptions\HealthFailureException;
+use Gentux\Healthz\Exceptions\HealthFailureException;
 use Illuminate\Queue\SqsQueue;
 use Illuminate\Queue\SyncQueue;
 
 /**
  * This will check the connection to a queue provider.
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class QueueHealthCheck extends HealthCheck
 {

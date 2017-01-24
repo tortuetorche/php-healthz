@@ -1,12 +1,12 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
 use Mockery;
 use Aws\Sqs\SqsClient;
 use Illuminate\Queue\SqsQueue;
 use Illuminate\Queue\SyncQueue;
 use Illuminate\Queue\RedisQueue;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Queue\QueueManager;
 
 class QueueHealthCheckTest extends \TestCase
@@ -89,7 +89,7 @@ class QueueHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException  \GenTux\Healthz\Exceptions\HealthWarningException
+     * @expectedException  \Gentux\Healthz\Exceptions\HealthWarningException
      */
     public function throws_warning_if_queue_driver_is_not_supported()
     {

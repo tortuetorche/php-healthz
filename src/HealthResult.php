@@ -1,10 +1,10 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 /**
  * DTO representing the result of a health check
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class HealthResult
 {

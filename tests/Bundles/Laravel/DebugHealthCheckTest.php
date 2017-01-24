@@ -1,7 +1,7 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 
 class DebugHealthCheckTest extends \TestCase
 {
@@ -29,7 +29,7 @@ class DebugHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException \GenTux\Healthz\Exceptions\HealthWarningException
+     * @expectedException \Gentux\Healthz\Exceptions\HealthWarningException
      */
     public function run_throws_warning_exception_if_debug_is_on()
     {

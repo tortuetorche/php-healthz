@@ -1,5 +1,5 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 use Mockery;
 

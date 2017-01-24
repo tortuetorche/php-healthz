@@ -1,12 +1,12 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
-use GenTux\Healthz\Support\Stack;
+use Gentux\Healthz\Support\Stack;
 
 /**
  * Manages a set of results from running a stack of health checks
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class ResultStack
 {

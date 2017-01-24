@@ -1,9 +1,9 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Contracts\Foundation\Application;
-use GenTux\Healthz\Exceptions\HealthFailureException;
+use Gentux\Healthz\Exceptions\HealthFailureException;
 
 /**
  * Check the current environment Laravel is running in
@@ -11,7 +11,7 @@ use GenTux\Healthz\Exceptions\HealthFailureException;
  * Right now, this health check always passes and is more for
  * the purpose of displaying the current environment for debug purposes.
  *
- * @package \GenTux\Healthz
+ * @package \Gentux\Healthz
  */
 class EnvHealthCheck extends HealthCheck
 {

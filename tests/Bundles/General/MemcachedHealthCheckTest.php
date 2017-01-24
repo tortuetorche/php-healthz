@@ -7,10 +7,10 @@ namespace {
     }
 }
 
-namespace GenTux\Healthz\Bundles\General {
+namespace Gentux\Healthz\Bundles\General {
 
     use Mockery;
-    use GenTux\Healthz\HealthCheck;
+    use Gentux\Healthz\HealthCheck;
     use GeckoPackages\MemcacheMock\MemcachedMock;
 
     class MemcachedHealthCheckTest extends \TestCase
@@ -84,7 +84,7 @@ namespace GenTux\Healthz\Bundles\General {
 
         /**
          * @test
-         * @expectedException \GenTux\Healthz\Exceptions\HealthFailureException
+         * @expectedException \Gentux\Healthz\Exceptions\HealthFailureException
          */
         public function run_throws_failure_exception_if_memcached_cant_set_test_value()
         {

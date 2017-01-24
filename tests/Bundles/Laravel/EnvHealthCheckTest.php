@@ -1,8 +1,8 @@
 <?php
-namespace GenTux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Bundles\Laravel;
 
 use Mockery;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 use Illuminate\Contracts\Foundation\Application;
 
 class EnvHealthCheckTest extends \TestCase

@@ -1,9 +1,9 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 use Mockery;
 use Exception;
-use GenTux\Healthz\Exceptions\HealthWarningException;
+use Gentux\Healthz\Exceptions\HealthWarningException;
 
 class HealthzTest extends \TestCase
 {

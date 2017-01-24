@@ -1,5 +1,5 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 /**
  * See mock checks that extend the abstract HealthCheck at the bottom

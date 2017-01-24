@@ -1,14 +1,14 @@
 <?php
-namespace GenTux\Healthz;
+namespace Gentux\Healthz;
 
 use Exception;
-use GenTux\Healthz\Support\Stack;
-use GenTux\Healthz\Exceptions\HealthWarningException;
+use Gentux\Healthz\Support\Stack;
+use Gentux\Healthz\Exceptions\HealthWarningException;
 
 /**
  * Collection of health checks to run.
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class Healthz
 {

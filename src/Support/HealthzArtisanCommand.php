@@ -1,8 +1,8 @@
 <?php
-namespace GenTux\Healthz\Support;
+namespace Gentux\Healthz\Support;
 
-use GenTux\Healthz\HealthResult;
-use GenTux\Healthz\Healthz;
+use Gentux\Healthz\HealthResult;
+use Gentux\Healthz\Healthz;
 use Illuminate\Console\Command;
 
 class HealthzArtisanCommand extends Command
@@ -31,7 +31,7 @@ class HealthzArtisanCommand extends Command
     public function handle()
     {
         if (count($this->checks->all()) == 0) {
-            $this->comment("No health checks registered. Be sure to register GenTux\Healthz\Healthz in a service provider. See github.com/generationtux/php-healthz for more info.");
+            $this->comment("No health checks registered. Be sure to register Gentux\Healthz\Healthz in a service provider. See github.com/generationtux/php-healthz for more info.");
             return 0;
         }
 

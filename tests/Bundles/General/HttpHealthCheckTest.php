@@ -1,11 +1,11 @@
 <?php
-namespace GenTux\Healthz\Bundles\General;
+namespace Gentux\Healthz\Bundles\General;
 
 use Mockery;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 use GuzzleHttp\Exception\RequestException;
 
 class HttpHealthCheckTest extends \TestCase
@@ -80,7 +80,7 @@ class HttpHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException \GenTux\Healthz\Exceptions\HealthFailureException
+     * @expectedException \Gentux\Healthz\Exceptions\HealthFailureException
      */
     public function run_throws_an_exception_if_the_expected_response_code_doesnt_match()
     {

@@ -1,16 +1,16 @@
 <?php
-namespace GenTux\Healthz\Bundles\General;
+namespace Gentux\Healthz\Bundles\General;
 
-use GenTux\Healthz\Exceptions\HealthFailureException;
+use Gentux\Healthz\Exceptions\HealthFailureException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use GenTux\Healthz\HealthCheck;
+use Gentux\Healthz\HealthCheck;
 
 /**
  * Health check for HTTP endpoints
  *
- * @package GenTux\Healthz
+ * @package Gentux\Healthz
  */
 class HttpHealthCheck extends HealthCheck
 {
