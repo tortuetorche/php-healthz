@@ -30,6 +30,11 @@ class HealthzArtisanCommand extends Command
      */
     public function handle()
     {
+        if (count($this->checks->all()) == 0) {
+            $this->comment("No health checks registered. Be sure to register GenTux\Healthz\Healthz in a service provider. See github.com/generationtux/php-healthz for more info.");
+            return 0;
+        }
+
         $results = $this->checks->run();
         foreach ($results->all() as $result) {
             $this->outputCheckResult($result);
@@ -49,7 +54,7 @@ class HealthzArtisanCommand extends Command
      */
     protected function outputCheckResult(HealthResult $result)
     {
-        $message = $result->title() . ": " . $result->status() . "\n" . $result->description();
+        $message = $result->title() . ": " . $result->status();
 
         switch ($result->result()) {
             case HealthResult::RESULT_SUCCESS:
