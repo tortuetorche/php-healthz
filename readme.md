@@ -20,10 +20,12 @@ to add custom health checks to the stack as well.
     - [Queue (Laravel)](#laravel-queue)
 - [Creating custom checks](#custom-checks)
 
+----------------------------------------------------------------------------
+
 ## Setup
 
-```bash
-composer require generationtux/healthz
+```sh
+$ composer require generationtux/healthz
 ```
 
 ### Laravel
@@ -67,6 +69,8 @@ class AppServiceProvider extends ServiceProvider {
 
 [See more about configuring available checks](#check-configuration)
 
+----------------------------------------------------------------------------
+
 ### General PHP
 
 1. Build an instance of the health check
@@ -107,6 +111,8 @@ foreach ($results->all() as $result) {
 $html = $healthz->html();
 ```
 
+----------------------------------------------------------------------------
+
 ## Check configuration
 
 - [HTTP](#http-check)
@@ -133,6 +139,8 @@ $html = $healthz->html();
 
 #### Queue (Laravel)
 <a name="laravel-queue"></a>
+
+----------------------------------------------------------------------------
 
 ## Custom checks
 
