@@ -2,14 +2,11 @@
 namespace Gentux\Healthz\Checks\General;
 
 use Gentux\Healthz\HealthCheck;
-use Illuminate\Contracts\Foundation\Application;
+use Gentux\Healthz\Exceptions\HealthWarningException;
 use Gentux\Healthz\Exceptions\HealthFailureException;
 
 /**
- * Check the current environment Laravel is running in
- *
- * Right now, this health check always passes and is more for
- * the purpose of displaying the current environment for debug purposes.
+ * Check the current environment the app is running in
  *
  * @package \Gentux\Healthz
  */
@@ -20,31 +17,26 @@ class EnvHealthCheck extends HealthCheck
     protected $title = 'Environment';
 
     /** @var string */
-    protected $description = 'Check the environment Laravel is running in.';
+    protected $description = 'Check the environment the app is running in.';
 
-    /** @var Application */
-    protected $app;
+    /** @var string environment variable to look for */
+    protected $env;
 
-    public function __construct($app = null)
+    public function __construct($env = 'APP_ENV')
     {
-        $this->app = $app;
-
-        if (!$app) {
-            try { $this->app = app(); } catch (\Exception $e) {
-                throw new HealthFailureException('Unable to resolve instance of application for Laravel.');
-            }
-        }
+        $this->env = $env;
     }
 
     /**
      * Run the health check
-     *
-     * This will simply set the current environment as the description
-     * of the health check.
      */
     public function run()
     {
-        $env = $this->app->environment();
+        $env = getenv($this->env) ?: 'UNKNOWN';
+        if ($env == 'UNKNOWN') {
+            throw new HealthWarningException($env);
+        }
+
         $this->setStatus($env);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Gentux\Healthz\Bundles\General;
+namespace Gentux\Healthz\Checks\General;
 
 use Gentux\Healthz\Checks\General\HttpHealthCheck;
 use Mockery;

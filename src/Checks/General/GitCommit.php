@@ -1,8 +1,9 @@
 <?php
+namespace Gentux\Healthz\Checks\General;
 
-namespace Gentux\Healthz;
+use Gentux\Healthz\HealthCheck;
 
-class HealthVersion
+class GitCommit extends HealthCheck
 {
 
     protected $customPath;
@@ -14,6 +15,11 @@ class HealthVersion
     public function __construct($customPath = __DIR__.'/commit.txt')
     {
         $this->customPath = $customPath;
+    }
+
+    public function run()
+    {
+
     }
 
     /**

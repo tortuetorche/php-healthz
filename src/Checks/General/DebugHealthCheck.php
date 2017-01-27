@@ -5,9 +5,7 @@ use Gentux\Healthz\HealthCheck;
 use Gentux\Healthz\Exceptions\HealthWarningException;
 
 /**
- * This will check if Laravel is running in debug mode.
- *
- * If it is, we will set the health check to fail with a warning
+ * This will check if the app is running in debug mode.
  *
  * @package Gentux\Healthz
  */
@@ -20,6 +18,14 @@ class DebugHealthCheck extends HealthCheck
     /** @var string */
     protected $description = 'Check if Laravel is running in debug mode.';
 
+    /** @var string environment variable to look for */
+    protected $env;
+
+    public function __construct($env = 'APP_DEBUG')
+    {
+        $this->env = $env;
+    }
+
     /**
      * Check if the app is in debug mode
      *
@@ -29,7 +35,7 @@ class DebugHealthCheck extends HealthCheck
      */
     public function run()
     {
-        $debug = getenv('APP_DEBUG') == 'true';
+        $debug = getenv($this->env) == 'true';
 
         if ($debug) {
             throw new HealthWarningException('on');

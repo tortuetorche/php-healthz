@@ -1,7 +1,6 @@
 <?php
-namespace Gentux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Checks\General;
 
-use Gentux\Healthz\Checks\General\DebugHealthCheck;
 use Gentux\Healthz\HealthCheck;
 
 class DebugHealthCheckTest extends \TestCase
@@ -34,8 +33,10 @@ class DebugHealthCheckTest extends \TestCase
      */
     public function run_throws_warning_exception_if_debug_is_on()
     {
-        putenv('APP_DEBUG=true');
+        $this->debug = new DebugHealthCheck('DEBUG_CUSTOM');
+        putenv('DEBUG_CUSTOM=true');
 
         $this->debug->run();
+        $this->assertSame('on', $this->debug->status());
     }
 }

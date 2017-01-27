@@ -1,9 +1,9 @@
 <?php
-namespace Gentux\Healthz;
+namespace Gentux\Healthz\Checks\General;
 
-use Gentux\Healthz\HealthVersion;
 use Mockery;
 use Exception;
+use Gentux\Healthz\HealthVersion;
 use Gentux\Healthz\Exceptions\HealthWarningException;
 
 

@@ -7,7 +7,7 @@ namespace {
     }
 }
 
-namespace Gentux\Healthz\Bundles\General {
+namespace Gentux\Healthz\Checks\General {
 
     use Gentux\Healthz\Checks\General\MemcachedHealthCheck;
     use Mockery;

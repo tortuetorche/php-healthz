@@ -1,16 +1,11 @@
 <?php
-namespace Gentux\Healthz\Bundles\Laravel;
+namespace Gentux\Healthz\Checks\General;
 
-use Gentux\Healthz\Checks\General\EnvHealthCheck;
 use Mockery;
 use Gentux\Healthz\HealthCheck;
-use Illuminate\Contracts\Foundation\Application;
 
 class EnvHealthCheckTest extends \TestCase
 {
-
-    /** @var Application | Mockery\Mock */
-    protected $app;
 
     /** @var EnvHealthCheck */
     protected $env;
@@ -18,8 +13,7 @@ class EnvHealthCheckTest extends \TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->app = Mockery::mock(Application::class);
-        $this->env = new EnvHealthCheck($this->app);
+        $this->env = new EnvHealthCheck('CUSTOM_ENV');
     }
 
     /** @test */
@@ -31,9 +25,18 @@ class EnvHealthCheckTest extends \TestCase
     /** @test */
     public function sets_the_status_to_the_current_environment()
     {
-        $this->app->shouldReceive('environment')->andReturn('staging');
-
+        putenv('CUSTOM_ENV=staging');
         $this->env->run();
         $this->assertSame('staging', $this->env->status());
+    }
+
+    /**
+     * @test
+     * @expectedException \Gentux\Healthz\Exceptions\HealthWarningException
+     */
+    public function unknown_environment_emits_a_warning()
+    {
+        putenv('CUSTOM_ENV=');
+        $this->env->run();
     }
 }
