@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 class HealthzServiceProvider extends ServiceProvider
 {
 
+    public function register()
+    {
+    }
+
     /**
      * Perform post-registration booting of services.
      *
@@ -14,5 +18,9 @@ class HealthzServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([HealthzArtisanCommand::class]);
+        }
     }
 }
