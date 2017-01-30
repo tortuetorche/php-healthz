@@ -19,9 +19,11 @@ class HealthzServiceProvider extends ServiceProvider
     public function boot()
     {
         if (method_exists($this->app, 'post')) {
-            $this->registerLumenRoutes();
+            $this->app->get('/healthz', $this->healthzHandler());
+            $this->app->get('/healthz/ui', $this->healthzUIHandler());
         } else {
-            $this->registerLaravelRoutes();
+            \Route::get('/healthz', $this->healthzHandler());
+            \Route::get('/healthz/ui', $this->healthzUIHandler());
         }
 
         if ($this->app->runningInConsole()) {
@@ -29,43 +31,32 @@ class HealthzServiceProvider extends ServiceProvider
         }
     }
 
-    protected function registerLumenRoutes()
+    protected function healthzHandler()
     {
-        $this->app->get('/healthz', function() {
+        return function() {
             $healthz = app(Healthz::class);
             $results = $healthz->run();
             if ($results->hasFailures()) {
-                return 'fail';
+                return response('fail', 500);
             }
 
-            return 'ok';
-        });
-
-        $this->app->get('/healthz/ui', function() {
-            $healthz = app(Healthz::class);
-            $html = $healthz->html();
-
-            return response($html)->header('Content-Type', 'text/html');
-        });
+            return response('ok', 200);
+        };
     }
 
-    protected function registerLaravelRoutes()
+    protected function healthzUIHandler()
     {
-        \Route::get('/healthz', function() {
+        return function() {
             $healthz = app(Healthz::class);
             $results = $healthz->run();
+            $html = $healthz->html($results);
+
+            $status = 200;
             if ($results->hasFailures()) {
-                return 'fail';
+                $status = 500;
             }
 
-            return 'ok';
-        });
-
-        \Route::get('/healthz/ui', function() {
-            $healthz = app(Healthz::class);
-            $html = $healthz->html();
-
-            return response($html)->header('Content-Type', 'text/html');
-        });
+            return response($html, $status)->header('Content-Type', 'text/html');
+        };
     }
 }
