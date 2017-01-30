@@ -84,6 +84,6 @@ class Healthz
         ]);
         $twig = new Twig_Environment($loader);
 
-        return $twig->render('index', ['results' => $results]);
+        return $twig->render('healthz', ['results' => $results]);
     }
 }
