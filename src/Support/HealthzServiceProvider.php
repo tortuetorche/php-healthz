@@ -2,7 +2,6 @@
 namespace GenTux\Healthz\Support;
 
 use Gentux\Healthz\Healthz;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class HealthzServiceProvider extends ServiceProvider
@@ -19,16 +18,20 @@ class HealthzServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerRoutes();
+        if (method_exists($this->app, 'post')) {
+            $this->registerLumenRoutes();
+        } else {
+            $this->registerLaravelRoutes();
+        }
 
         if ($this->app->runningInConsole()) {
             $this->commands([HealthzArtisanCommand::class]);
         }
     }
 
-    protected function registerRoutes()
+    protected function registerLumenRoutes()
     {
-        Route::get('/healthz', function() {
+        $this->app->get('/healthz', function() {
             $healthz = app(Healthz::class);
             $results = $healthz->run();
             if ($results->hasFailures()) {
@@ -38,7 +41,27 @@ class HealthzServiceProvider extends ServiceProvider
             return 'ok';
         });
 
-        Route::get('/healthz/ui', function() {
+        $this->app->get('/healthz/ui', function() {
+            $healthz = app(Healthz::class);
+            $html = $healthz->html();
+
+            return response($html)->header('Content-Type', 'text/html');
+        });
+    }
+
+    protected function registerLaravelRoutes()
+    {
+        \Route::get('/healthz', function() {
+            $healthz = app(Healthz::class);
+            $results = $healthz->run();
+            if ($results->hasFailures()) {
+                return 'fail';
+            }
+
+            return 'ok';
+        });
+
+        \Route::get('/healthz/ui', function() {
             $healthz = app(Healthz::class);
             $html = $healthz->html();
 
