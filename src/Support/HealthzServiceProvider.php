@@ -47,6 +47,17 @@ class HealthzServiceProvider extends ServiceProvider
     protected function healthzUIHandler()
     {
         return function() {
+            $username = getenv('HEALTHZ_USERNAME');
+            $password = getenv('HEALTHZ_PASSWORD');
+            if ($username != "") {
+                if (
+                    request()->getUser() !== $username ||
+                    request()->getPassword() !== $password
+                ) {
+                    return response('Invalid credentials', 401, ['WWW-Authenticate' => 'Basic']);
+                }
+            }
+
             $healthz = app(Healthz::class);
             $results = $healthz->run();
             $html = $healthz->html($results);
