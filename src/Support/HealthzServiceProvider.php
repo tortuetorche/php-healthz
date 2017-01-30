@@ -1,5 +1,5 @@
 <?php
-namespace GenTux\Healthz\Support;
+namespace Gentux\Healthz\Support;
 
 use Gentux\Healthz\Healthz;
 use Illuminate\Support\ServiceProvider;
