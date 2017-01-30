@@ -16,7 +16,7 @@ class DebugHealthCheck extends HealthCheck
     protected $title = 'Debug';
 
     /** @var string */
-    protected $description = 'Check if Laravel is running in debug mode.';
+    protected $description = 'Check if app is running in debug mode.';
 
     /** @var string environment variable to look for */
     protected $env;
