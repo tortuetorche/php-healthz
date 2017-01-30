@@ -51,8 +51,8 @@ class HealthzServiceProvider extends ServiceProvider
             $password = getenv('HEALTHZ_PASSWORD');
             if ($username != "") {
                 if (
-                    request()->getUser() !== $username ||
-                    request()->getPassword() !== $password
+                    array_get($_SERVER, 'PHP_AUTH_USER') !== $username ||
+                    array_get($_SERVER, 'PHP_AUTH_PW') !== $password
                 ) {
                     return response('Invalid credentials', 401, ['WWW-Authenticate' => 'Basic']);
                 }
