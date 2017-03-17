@@ -5,7 +5,7 @@
 # PHP Healthz
 Health checking for PHP apps with built-in support for Laravel.
 
-Get an easy overview of the health of your app! Implement a health check endpoint for load balancers, or your own sanity :) Comes with an optional UI and set of pre-configured checks you can use, and is extensible
+<img align="left" src="https://s3.amazonaws.com/gentux-dev/docs/health-check-screenshot.png"> Get an easy overview of the health of your app! Implement a health check endpoint for load balancers, or your own sanity :) Comes with an optional UI and set of pre-configured checks you can use, and is extensible
 to add custom health checks to the stack as well.
 
 - [Setup and usage](#setup)
@@ -15,8 +15,8 @@ to add custom health checks to the stack as well.
     - [HTTP](#http-check)
     - [Memcached](#memcached-check)
     - [Debug](#debug-check)
+    - [Env)](#env-check)
     - [Database (Laravel)](#laravel-database)
-    - [Env (Laravel)](#laravel-env)
     - [Queue (Laravel)](#laravel-queue)
 - [Creating custom checks](#custom-checks)
 
@@ -118,27 +118,76 @@ $html = $healthz->html();
 - [HTTP](#http-check)
 - [Memcached](#memcached-check)
 - [Debug](#debug-check)
+- [Env](#env-check)
 - [Database (Laravel)](#laravel-database)
-- [Env (Laravel)](#laravel-env)
 - [Queue (Laravel)](#laravel-queue)
 
 #### HTTP
 <a name="http-check"></a>
+Create a new [Guzzle Request](http://docs.guzzlephp.org/en/latest/psr7.html) to pass to the constuctor of the HTTP health check.
+```php
+use GuzzleHTTP\PSR7\Request;
+use Gentux\Healthz\Checks\General\HttpHealthCheck;
+
+$request = new Request('GET', 'http://example.com');
+$httpCheck = new HttpHealthCheck($request);
+```
+
+You can optionally pass the expected response status code (defaults to `200`), as well as Guzzle client options.
+```php
+$httpCheck = new HttpHealthCheck($request, 204, ['base_url' => 'http://example.com']);
+```
 
 #### Memcached
 <a name="memcached-check"></a>
+Create a new Memcached health check and use the methods `addServer` and `setOptions`.
+```php
+use Gentux\Healthz\Checks\General\MemcachedHealthCheck;
+
+$memcachedCheck = new MemcachedHealthCheck();
+$memcachedCheck->addServer($server, $port=11211, $weight=0);
+$memcachedCheck->setOptions([]);
+```
+*See [Memcached setOptions](http://php.net/manual/en/memcached.setoptions.php) for option information.*
 
 #### Debug
 <a name="debug-check"></a>
+Set the environment variable to check if the app is running in debug. If this check fails, it emits a warning.
+```php
+use Gentux\Healthz\Checks\General\DebugHealthCheck;
+
+$debugCheck = new DebugHealthCheck('APP_DEBUG');
+```
+In this case, if `APP_DEBUG` == `'true'` then this check will emit a warning.
+
+#### Env
+<a name="env-check"></a>
+Provide an environment variable name to check for the apps environment. If the provided env name is found the check will always be successful and simply output the name. If no environment variable is set the check will emit a warning.
+```php
+use Gentux\Healthz\Checks\General\EnvHealthCheck;
+
+$envCheck = new EnvHealthCheck('APP_ENV');
+```
 
 #### Database (Laravel)
 <a name="laravel-database"></a>
+This will use Laravel's built in database service to verify connectivity. You may optionally set a connection name to use (will use the default if not provided).
+```php
+use Gentux\Healthz\Checks\Laravel\DatabaseHealthCheck;
 
-#### Env (Laravel)
-<a name="laravel-env"></a>
+$dbCheck = new DatabaseHealthCheck();
+$dbCheck->setConnection('my_conn'); // optional
+```
 
 #### Queue (Laravel)
 <a name="laravel-queue"></a>
+The queue health check currently supports `sync` and `sqs` queues. You may optionally set the queue name to use (will use the default if not specified).
+```php
+use Gentux\Healthz\Checks\Laravel\QueueHealthCheck;
+
+$queueCheck = new QueueHealthCheck();
+$queueCheck->setName('my_queue'); // optional
+```
 
 ----------------------------------------------------------------------------
 
