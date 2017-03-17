@@ -5,7 +5,9 @@
 # PHP Healthz
 Health checking for PHP apps with built-in support for Laravel.
 
-<img align="left" src="https://s3.amazonaws.com/gentux-dev/docs/health-check-screenshot.png"> Get an easy overview of the health of your app! Implement a health check endpoint for load balancers, or your own sanity :) Comes with an optional UI and set of pre-configured checks you can use, and is extensible
+<img src="https://s3.amazonaws.com/gentux-dev/docs/health-check-screenshot.png">
+
+Get an easy overview of the health of your app! Implement a health check endpoint for load balancers, or your own sanity :) Comes with an optional UI and set of pre-configured checks you can use, and is extensible
 to add custom health checks to the stack as well.
 
 - [Setup and usage](#setup)
