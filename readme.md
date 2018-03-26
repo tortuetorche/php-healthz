@@ -30,7 +30,7 @@ to add custom health checks to the stack as well.
 $ composer require generationtux/healthz
 ```
 
-### Laravel
+### Laravel < 5.4
 (the following should work with Lumen as well, with minor differences)
 
 **Add the service provider that will register the default health checks and routes**
