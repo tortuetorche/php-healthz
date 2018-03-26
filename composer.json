@@ -31,5 +31,12 @@
         "mockery/mockery": "^0.9.4",
         "gecko-packages/gecko-memcache-mock": "^1.0",
         "codeclimate/php-test-reporter": "^0.4.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gentux\\Healthz\\Support\\HealthzServiceProvider::class"
+            ]
+        }
     }
 }
