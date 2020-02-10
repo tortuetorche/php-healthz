@@ -50,7 +50,7 @@ class DatabaseHealthCheck extends HealthCheck
     {
         try {
             $name = $this->connection();
-            $this->db->connection($name);
+            $this->db->connection($name)->getPdo();
         } catch (Exception $e) {
             throw new HealthFailureException($e->getMessage());
         }
