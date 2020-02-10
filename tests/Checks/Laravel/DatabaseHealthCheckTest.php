@@ -6,6 +6,7 @@ use Mockery;
 use Gentux\Healthz\HealthCheck;
 use Illuminate\Database\Connection;
 use Illuminate\Database\DatabaseManager;
+use PDO;
 
 class DatabaseHealthCheckTest extends \TestCase
 {
@@ -54,8 +55,13 @@ class DatabaseHealthCheckTest extends \TestCase
     {
         $this->db->setConnection('custom');
 
-        $conn = Mockery::mock(Connection::class);
-        $this->manager->shouldReceive('connection')->with('custom')->once()->andReturn($conn);
+        $conn = Mockery::mock(Connection::class)->makePartial();
+        $this->manager->shouldReceive('connection')->with('custom')->once()
+            ->andReturn($conn);
+
+        $pdo = Mockery::mock(PDO::class);
+        $conn->shouldReceive('getPdo')->once()
+            ->andReturn($pdo);
 
         $this->db->run();
         $status = $this->db->status();
