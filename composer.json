@@ -27,7 +27,7 @@
     },
     "require": {
         "php": ">=7.3",
-        "guzzlehttp/guzzle": "~6.0",
+        "guzzlehttp/guzzle": "^6.2",
         "aws/aws-sdk-php": "~3.0",
         "illuminate/contracts": "^7.0",
         "illuminate/database": "^7.0",
