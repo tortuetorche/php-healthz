@@ -13,7 +13,7 @@ class HealthCheckTest extends \TestCase
     /** @var MockCheckTitle */
     protected $checkWithTitle;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->check = new MockCheck();

@@ -14,26 +14,41 @@ trait Stack
     /**
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->items;
     }
 
-    public function push($item)
+    /**
+     * @param $item
+     *
+     * @return $this
+     */
+    public function push($item): self
     {
         $this->items[] = $item;
 
         return $this;
     }
 
-    public function merge(array $items)
+    /**
+     * @param array $items
+     *
+     * @return $this
+     */
+    public function merge(array $items): self
     {
         $this->items = array_merge($this->items, $items);
 
         return $this;
     }
 
-    public function replace(array $items)
+    /**
+     * @param array $items
+     *
+     * @return $this
+     */
+    public function replace(array $items): self
     {
         $this->items = $items;
 

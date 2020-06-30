@@ -1,7 +1,7 @@
 version: '3'
 services:
     app:
-        image: gentux/php:lumen-5.6-ci
+        image: gentux/php:laravel-6.x-ci
         volumes:
             - ./:/var/www
         ports:

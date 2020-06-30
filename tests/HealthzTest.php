@@ -20,7 +20,7 @@ class HealthzTest extends \TestCase
     /** @var Healthz */
     protected $healthz;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->check1 = Mockery::mock(HealthCheck::class);

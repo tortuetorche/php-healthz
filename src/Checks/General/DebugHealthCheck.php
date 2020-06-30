@@ -29,11 +29,11 @@ class DebugHealthCheck extends HealthCheck
     /**
      * Check if the app is in debug mode
      *
-     * @return mixed
+     * @return void
      *
      * @throws HealthWarningException
      */
-    public function run()
+    public function run(): void
     {
         $debug = getenv($this->env) == 'true';
 

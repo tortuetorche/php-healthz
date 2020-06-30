@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Gentux\Healthz\HealthCheck;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Health check for HTTP endpoints
@@ -41,11 +42,11 @@ class HttpHealthCheck extends HealthCheck
     /**
      * Send the request
      *
-     * @return mixed
+     * @return ResponseInterface
      *
-     * @throws HealthFailureException
+     * @throws HealthFailureException|RequestException
      */
-    public function run()
+    public function run(): ResponseInterface
     {
         try {
             $response = $this->guzzle()->send(
@@ -156,7 +157,7 @@ class HttpHealthCheck extends HealthCheck
      *
      * @return string
      */
-    public function description()
+    public function description(): ?string
     {
         $description = $this->description;
 

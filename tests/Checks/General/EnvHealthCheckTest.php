@@ -10,7 +10,7 @@ class EnvHealthCheckTest extends \TestCase
     /** @var EnvHealthCheck */
     protected $env;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->env = new EnvHealthCheck('CUSTOM_ENV');
@@ -32,10 +32,10 @@ class EnvHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException \Gentux\Healthz\Exceptions\HealthWarningException
      */
     public function unknown_environment_emits_a_warning()
     {
+        $this->expectException(\Gentux\Healthz\Exceptions\HealthWarningException::class);
         putenv('CUSTOM_ENV=');
         $this->env->run();
     }

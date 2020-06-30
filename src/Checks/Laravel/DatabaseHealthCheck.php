@@ -42,11 +42,11 @@ class DatabaseHealthCheck extends HealthCheck
     /**
      * Check database connection
      *
-     * @return mixed
+     * @return void
      *
      * @throws HealthFailureException
      */
-    public function run()
+    public function run(): void
     {
         try {
             $name = $this->connection();
@@ -63,7 +63,7 @@ class DatabaseHealthCheck extends HealthCheck
      *
      * @return null|string
      */
-    public function connection()
+    public function connection(): ?string
     {
         return $this->connection;
     }
@@ -72,8 +72,10 @@ class DatabaseHealthCheck extends HealthCheck
      * Set the connection name
      *
      * @param string $connection
+     *
+     * @return void
      */
-    public function setConnection($connection)
+    public function setConnection($connection): void
     {
         $this->connection = $connection;
     }
@@ -81,8 +83,10 @@ class DatabaseHealthCheck extends HealthCheck
     /**
      * If no description property is defined, use the connection
      * name instead ('default' if connection is also null).
+     *
+     * @return string
      */
-    public function description()
+    public function description(): string
     {
         $description = $this->description;
 
