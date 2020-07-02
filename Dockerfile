@@ -11,6 +11,8 @@ LABEL org.opencontainers.image.url="https://laravel.com" \
     org.opencontainers.image.description="PHP built for use with the Laravel/Lumen framework" \
     com.generationtux.php.backend="fpm"
 
+USER root
+
 COPY ./docker/installComposer.sh /tmp/installComposer.sh
 
 RUN apk --no-cache --update add bash ca-certificates libpq postgresql-dev curl git curl git mysql-client unzip wget zip postgresql-client \
@@ -22,7 +24,7 @@ RUN apk --no-cache --update add bash ca-certificates libpq postgresql-dev curl g
     && /tmp/installComposer.sh \
     && chown www-data:www-data /usr/local/bin/composer \
     && apk del --purge autoconf build-dependencies g++ make \
-    && chown -R www-data:www-data /var/www \
+    && chown -R www-data:www-data /var/www
 
 WORKDIR /var/www
 
