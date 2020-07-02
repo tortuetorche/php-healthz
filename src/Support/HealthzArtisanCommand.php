@@ -28,7 +28,7 @@ class HealthzArtisanCommand extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         if (count($this->checks->all()) == 0) {
             $this->comment("No health checks registered. Be sure to register Gentux\Healthz\Healthz in a service provider. See github.com/generationtux/php-healthz for more info.");
@@ -51,8 +51,10 @@ class HealthzArtisanCommand extends Command
      * Output message about health check result
      *
      * @param HealthResult $result
+     *
+     * @return void
      */
-    protected function outputCheckResult(HealthResult $result)
+    protected function outputCheckResult(HealthResult $result): void
     {
         $message = $result->title() . ": " . $result->status();
 

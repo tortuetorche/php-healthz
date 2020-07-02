@@ -31,9 +31,11 @@ class MemcachedHealthCheck extends HealthCheck
     /**
      * Check for connection to memcached servers
      *
-     * @return mixed
+     * @return void
+     *
+     * @throws HealthFailureException
      */
-    public function run()
+    public function run(): void
     {
         if (count($this->servers())) {
             $this->memcached->addServers($this->servers());
@@ -64,7 +66,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return self
      */
-    public function addServer($server, $port = 11211, $weight = 0)
+    public function addServer($server, $port = 11211, $weight = 0): HealthCheck
     {
         $this->servers[] = [$server, $port, $weight];
 
@@ -76,7 +78,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return array
      */
-    public function servers()
+    public function servers(): array
     {
         return $this->servers;
     }
@@ -88,7 +90,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return self
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options): HealthCheck
     {
         $this->options = $options;
 
@@ -100,7 +102,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return array
      */
-    public function options()
+    public function options(): array
     {
         return $this->options;
     }
@@ -113,7 +115,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return self
      */
-    public function setAuth($username, $password)
+    public function setAuth($username, $password): HealthCheck
     {
         $this->username = $username;
         $this->password = $password;
@@ -126,7 +128,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return string|null
      */
-    public function username()
+    public function username(): ?string
     {
         return $this->username;
     }
@@ -136,7 +138,7 @@ class MemcachedHealthCheck extends HealthCheck
      *
      * @return string|null
      */
-    public function password()
+    public function password(): ?string
     {
         return $this->password;
     }

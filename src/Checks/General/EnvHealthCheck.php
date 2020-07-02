@@ -29,8 +29,10 @@ class EnvHealthCheck extends HealthCheck
 
     /**
      * Run the health check
+     *
+     * @throws HealthWarningException
      */
-    public function run()
+    public function run(): void
     {
         $env = getenv($this->env) ?: 'UNKNOWN';
         if ($env == 'UNKNOWN') {

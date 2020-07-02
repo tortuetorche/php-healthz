@@ -237,3 +237,39 @@ public function run()
     throw new HealthWarningException("The check didn't fail, but here ye be warned.");
 }
 ```
+
+
+## Contributing
+
+### What you need
+* [docker & docker-compose](https://docs.docker.com/compose/install/)
+* a fork of this repo
+
+### Bringing up the development environment
+
+```sh
+docker-compose up -d
+```
+
+### Exec into the container
+```sh
+docker-compose exec app bash
+```
+### Composer install
+```sh
+composer install
+```
+
+### Running the tests
+```sh
+./vendor/bin/phpunit
+```
+
+
+### Finally
+Make your changes and add any needed tests around said changes.
+Then open a pull request into the generationtux repository.
+
+
+
+

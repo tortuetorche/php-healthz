@@ -18,7 +18,7 @@ class ResultStackTest extends \TestCase
     /** @var HealthResult */
     protected $checkWarned;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->checkPassed = Mockery::mock(HealthResult::class);
         $this->checkPassed->shouldReceive('failed')->andReturn(false);

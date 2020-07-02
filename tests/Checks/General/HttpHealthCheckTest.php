@@ -21,7 +21,7 @@ class HttpHealthCheckTest extends \TestCase
     /** @var HttpHealthCheck */
     protected $http;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->request = Mockery::mock(Request::class);
@@ -77,14 +77,15 @@ class HttpHealthCheckTest extends \TestCase
         $this->guzzle->shouldReceive('send')->with($this->request, [])->once()->andReturn($response);
 
         $this->http->run();
+        $this->assertTrue(true);
     }
 
     /**
      * @test
-     * @expectedException \Gentux\Healthz\Exceptions\HealthFailureException
      */
     public function run_throws_an_exception_if_the_expected_response_code_doesnt_match()
     {
+        $this->expectException(\Gentux\Healthz\Exceptions\HealthFailureException::class);
         $response = Mockery::mock(Response::class);
         $response->shouldReceive('getStatusCode')->andReturn(201);
 
@@ -106,6 +107,7 @@ class HttpHealthCheckTest extends \TestCase
 
         $this->http->setExpectedStatusCode(404);
         $this->http->run(); // no exceptions, should pass
+        $this->assertTrue(true);
     }
 
     /** @test */

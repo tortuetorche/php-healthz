@@ -34,7 +34,7 @@ class Healthz
      *
      * @return $this
      */
-    public function push(HealthCheck $healthCheck)
+    public function push(HealthCheck $healthCheck): self
     {
         return $this->stackPush($healthCheck);
     }
@@ -44,7 +44,7 @@ class Healthz
      *
      * @return ResultStack
      */
-    public function run()
+    public function run(): ResultStack
     {
         $results = [];
 
@@ -73,7 +73,7 @@ class Healthz
      *
      * @return string
      */
-    public function html(ResultStack $results=null)
+    public function html(ResultStack $results=null): string
     {
         if ($results === null) {
             $results = $this->run();

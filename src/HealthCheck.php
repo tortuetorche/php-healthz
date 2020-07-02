@@ -39,7 +39,7 @@ abstract class HealthCheck
      *
      * @return string
      */
-    public function title()
+    public function title(): string
     {
         $title = $this->title;
 
@@ -58,7 +58,7 @@ abstract class HealthCheck
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setTitle($title): self
     {
         $this->title = $title;
 
@@ -70,7 +70,7 @@ abstract class HealthCheck
      *
      * @return null|string
      */
-    public function description()
+    public function description(): ?string
     {
         return $this->description;
     }
@@ -82,7 +82,7 @@ abstract class HealthCheck
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
 
@@ -97,7 +97,7 @@ abstract class HealthCheck
      *
      * @return null|string
      */
-    public function status()
+    public function status(): ?string
     {
         return $this->status;
     }
@@ -109,10 +109,10 @@ abstract class HealthCheck
      *
      * @return $this
      */
-    public function setStatus($status)
+    public function setStatus($status): self
     {
         $this->status = $status;
 
-        return $status;
+        return $this;
     }
 }

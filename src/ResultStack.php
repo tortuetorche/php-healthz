@@ -15,12 +15,22 @@ class ResultStack
         Stack::push as stackPush;
     }
 
+    /**
+     * ResultStack constructor.
+     *
+     * @param array $results
+     */
     public function __construct(array $results=[])
     {
         $this->items = $results;
     }
 
-    public function push(HealthResult $result)
+    /**
+     * @param HealthResult $result
+     *
+     * @return Stack
+     */
+    public function push(HealthResult $result): ResultStack
     {
         return $this->stackPush($result);
     }
@@ -30,7 +40,7 @@ class ResultStack
      *
      * @return bool
      */
-    public function hasFailures()
+    public function hasFailures(): bool
     {
         $hasFailure = false;
         foreach ($this->all() as $result) {
@@ -48,7 +58,7 @@ class ResultStack
      *
      * @return bool
      */
-    public function hasWarnings()
+    public function hasWarnings(): bool
     {
         $hasWarning = false;
         foreach($this->all() as $result) {

@@ -19,7 +19,7 @@ class QueueHealthCheckTest extends \TestCase
     /** @var QueueHealthCheck */
     protected $queue;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->manager = Mockery::mock(QueueManager::class);
@@ -90,10 +90,10 @@ class QueueHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException  \Gentux\Healthz\Exceptions\HealthWarningException
      */
     public function throws_warning_if_queue_driver_is_not_supported()
     {
+        $this->expectException(\Gentux\Healthz\Exceptions\HealthWarningException::class);
         $redis = Mockery::mock(RedisQueue::class);
         $this->manager->shouldReceive('connection')->andReturn($redis);
 
