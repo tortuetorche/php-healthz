@@ -15,7 +15,7 @@ class HealthResultTest extends \TestCase
     /** @var HealthResult*/
     protected $resultFailure;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $check = Mockery::mock(HealthCheck::class);

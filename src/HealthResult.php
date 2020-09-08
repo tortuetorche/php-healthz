@@ -18,6 +18,12 @@ class HealthResult
     /** @var HealthCheck */
     protected $check;
 
+    /**
+     * HealthResult constructor.
+     *
+     * @param             $result
+     * @param HealthCheck $check
+     */
     public function __construct($result, HealthCheck $check)
     {
         $this->result = $result;
@@ -29,7 +35,7 @@ class HealthResult
      *
      * @return bool
      */
-    public function failed()
+    public function failed(): bool
     {
         return $this->result() === self::RESULT_FAILURE;
     }
@@ -39,7 +45,7 @@ class HealthResult
      *
      * @return bool
      */
-    public function passed()
+    public function passed(): bool
     {
         return $this->result() === self::RESULT_SUCCESS;
     }
@@ -49,29 +55,41 @@ class HealthResult
      *
      * @return bool
      */
-    public function warned()
+    public function warned(): bool
     {
         return $this->result() === self::RESULT_WARNING;
     }
 
     /** Getters: information about the health check */
 
-    public function title()
+    /**
+     * @return string
+     */
+    public function title(): string
     {
         return $this->check->title();
     }
 
-    public function description()
+    /**
+     * @return string
+     */
+    public function description(): string
     {
         return $this->check->description();
     }
 
-    public function status()
+    /**
+     * @return string|null
+     */
+    public function status(): ?string
     {
         return $this->check->status();
     }
 
-    public function result()
+    /**
+     * @return int
+     */
+    public function result(): int
     {
         return $this->result;
     }

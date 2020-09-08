@@ -23,7 +23,7 @@ namespace Gentux\Healthz\Checks\General {
         /** @var MemcachedHealthCheck */
         protected $health;
 
-        public function setUp()
+        public function setUp(): void
         {
             parent::setUp();
             $this->memcached = Mockery::mock(MemcachedMock::class);
@@ -81,14 +81,15 @@ namespace Gentux\Healthz\Checks\General {
             $this->memcached->shouldReceive('set')->with('test.connection', 'success', 1)->once()->andReturn(true);
 
             $this->health->run();
+            $this->assertTrue(true);
         }
 
         /**
          * @test
-         * @expectedException \Gentux\Healthz\Exceptions\HealthFailureException
          */
         public function run_throws_failure_exception_if_memcached_cant_set_test_value()
         {
+            $this->expectException(\Gentux\Healthz\Exceptions\HealthFailureException::class);
             $this->memcached->shouldReceive('set')->with('test.connection', 'success', 1)->once()->andReturn(false);
             $this->health->run();
         }

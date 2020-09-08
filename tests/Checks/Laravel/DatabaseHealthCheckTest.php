@@ -17,7 +17,7 @@ class DatabaseHealthCheckTest extends \TestCase
     /** @var DatabaseHealthCheck */
     protected $db;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->manager = Mockery::mock(DatabaseManager::class);
@@ -70,10 +70,10 @@ class DatabaseHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException \Gentux\Healthz\Exceptions\HealthFailureException
      */
     public function throws_health_failure_when_laravel_runs_into_trouble()
     {
+        $this->expectException(\Gentux\Healthz\Exceptions\HealthFailureException::class);
         $this->manager->shouldReceive('connection')->andThrow(new \Exception());
         $this->db->run();
     }

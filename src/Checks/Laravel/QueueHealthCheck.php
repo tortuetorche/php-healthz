@@ -45,12 +45,12 @@ class QueueHealthCheck extends HealthCheck
     /**
      * Check database connection
      *
-     * @return mixed
+     * @return void
      *
      * @throws HealthFailureException
      * @throws HealthWarningException
      */
-    public function run()
+    public function run(): void
     {
         $name = $this->name();
         $queue = $this->queue->connection($name);
@@ -68,8 +68,10 @@ class QueueHealthCheck extends HealthCheck
      * Run the health check against an sqs queue
      *
      * @param SqsQueue $queue
+     *
+     * @return void
      */
-    protected function runSqsCheck(SqsQueue $queue)
+    protected function runSqsCheck(SqsQueue $queue): void
     {
         $url = $queue->getQueue(null);
         $queue->getSqs()->getQueueAttributes(['QueueUrl' => $url]);
@@ -82,8 +84,10 @@ class QueueHealthCheck extends HealthCheck
      * just set the status.
      *
      * @param SyncQueue $queue
+     *
+     * @return void
      */
-    protected function runSyncCheck(SyncQueue $queue)
+    protected function runSyncCheck(SyncQueue $queue): void
     {
         $this->setStatus('connected to Sync queue');
     }
@@ -93,7 +97,7 @@ class QueueHealthCheck extends HealthCheck
      *
      * @return null|string
      */
-    public function name()
+    public function name(): ?string
     {
         return $this->name;
     }
@@ -102,8 +106,10 @@ class QueueHealthCheck extends HealthCheck
      * Set the queue name
      *
      * @param string $name
+     *
+     * @return void
      */
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
@@ -111,9 +117,9 @@ class QueueHealthCheck extends HealthCheck
     /**
      * If no description property is defined, use the queue name instead.
      *
-     * @return string
+     * @return string|null
      */
-    public function description()
+    public function description(): ?string
     {
         $description = $this->description ?: $this->name();
 

@@ -6,7 +6,7 @@ use Gentux\Healthz\HealthCheck;
 class DebugHealthCheckTest extends \TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->debug = new DebugHealthCheck();
@@ -29,10 +29,10 @@ class DebugHealthCheckTest extends \TestCase
 
     /**
      * @test
-     * @expectedException \Gentux\Healthz\Exceptions\HealthWarningException
      */
     public function run_throws_warning_exception_if_debug_is_on()
     {
+        $this->expectException(\Gentux\Healthz\Exceptions\HealthWarningException::class);
         $this->debug = new DebugHealthCheck('DEBUG_CUSTOM');
         putenv('DEBUG_CUSTOM=true');
 
