@@ -23,6 +23,9 @@ class DatabaseHealthCheck extends HealthCheck
     /** @var DatabaseManager */
     protected $db;
 
+    /** @var string */
+    protected $description = 'Check the database connection.';
+
     /**
      * @param DatabaseManager|null $db Will use Laravel's container to make an instance if null
      *

@@ -26,6 +26,9 @@ class QueueHealthCheck extends HealthCheck
     /** @var QueueManager */
     protected $queue;
 
+    /** @var string */
+    protected $description = 'Check the queue connection.';
+
     /**
      * @param QueueManager|null $queue Will use Laravel's container to make an instance if null
      *
