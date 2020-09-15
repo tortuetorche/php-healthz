@@ -40,7 +40,7 @@ class DatabaseHealthCheckTest extends \TestCase
     }
 
     /** @test */
-    public function if_no_description_is_set_use_the_connection_name()
+    public function if_no_connection_is_set_use_the_description()
     {
         $description = $this->db->description();
         $this->assertSame('Check the database connection.', $description); # if connection is also null
