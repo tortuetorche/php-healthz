@@ -1,7 +1,27 @@
 language: php
+
 php:
-  - '7.3'
-install: composer install
-script: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - 7.3
+  - 7.4
+
+env:
+  - LARAVEL=^7.0
+  - LARAVEL=^8.0
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: 7.4
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+install:
+  - travis_retry composer install --no-suggest --no-interaction --prefer-dist --no-progress
+
+script: 
+  - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
 after_success:
   - vendor/bin/test-reporter
