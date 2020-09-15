@@ -42,10 +42,10 @@ class QueueHealthCheckTest extends \TestCase
     }
 
     /** @test */
-    public function if_no_description_is_set_use_the_connection_name()
+    public function if_no_connection_is_set_use_the_description()
     {
         $description = $this->queue->description();
-        $this->assertNull($description);
+        $this->assertSame('Check the queue connection.', $description);
 
         $this->queue->setName('sqs');
         $description = $this->queue->description();

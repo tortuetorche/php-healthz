@@ -91,12 +91,6 @@ class DatabaseHealthCheck extends HealthCheck
      */
     public function description(): string
     {
-        $description = $this->description;
-
-        if (!$description) {
-            $description = $this->connection() ?: 'default';
-        }
-
-        return $description;
+        return $this->connection() ?: $this->description;;
     }
 }

@@ -124,8 +124,6 @@ class QueueHealthCheck extends HealthCheck
      */
     public function description(): ?string
     {
-        $description = $this->description ?: $this->name();
-
-        return $description;
+        return $this->name() ?: $this->description;
     }
 }
