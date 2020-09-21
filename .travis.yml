@@ -5,6 +5,7 @@ php:
   - 7.4
 
 env:
+  - LARAVEL=^6.0
   - LARAVEL=^7.0
   - LARAVEL=^8.0
 
@@ -20,7 +21,7 @@ cache:
 install:
   - travis_retry composer install --no-suggest --no-interaction --prefer-dist --no-progress
 
-script: 
+script:
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
