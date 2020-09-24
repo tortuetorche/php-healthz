@@ -2,6 +2,7 @@
 namespace Gentux\Healthz\Support;
 
 use Gentux\Healthz\Healthz;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 
 class HealthzServiceProvider extends ServiceProvider
@@ -51,8 +52,8 @@ class HealthzServiceProvider extends ServiceProvider
             $password = getenv('HEALTHZ_PASSWORD');
             if ($username != "") {
                 if (
-                    array_get($_SERVER, 'PHP_AUTH_USER') !== $username ||
-                    array_get($_SERVER, 'PHP_AUTH_PW') !== $password
+                    Arr::get($_SERVER, 'PHP_AUTH_USER') !== $username ||
+                    Arr::get($_SERVER, 'PHP_AUTH_PW') !== $password
                 ) {
                     return response('Invalid credentials', 401, ['WWW-Authenticate' => 'Basic']);
                 }
