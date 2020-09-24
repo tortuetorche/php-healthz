@@ -71,9 +71,9 @@ class HealthResult
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function description(): string
+    public function description(): ?string
     {
         return $this->check->description();
     }
