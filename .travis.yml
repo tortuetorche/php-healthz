@@ -1,26 +1,25 @@
 language: php
 
 php:
+  - 7.2
   - 7.3
   - 7.4
+  - 8.0snapshot
 
 env:
+  - LARAVEL=^6.0
   - LARAVEL=^7.0
   - LARAVEL=^8.0
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - php: 7.4
 
 cache:
   directories:
     - $HOME/.composer/cache
 
 install:
-  - travis_retry composer install --no-suggest --no-interaction --prefer-dist --no-progress
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-dist --no-progress
 
-script: 
+script:
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
